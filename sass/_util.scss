@@ -1,0 +1,76 @@
+@import "compass";
+@import "breakpoint";
+@import "susy";
+
+$font-list: 12px 14px 16px 18px 20px 30px 40px 45px 50px 24px;
+$base-font-size: nth($font-list,3);  
+$base-line-height: 10px;
+$min-line-padding: 2px;
+$rhythm-unit: 'px';
+$susy: (
+	columns:24,
+	gutters:1,
+	gutter-position:split
+);
+
+$purple_color:#A7017A;
+$white_color:#FFFFFF;
+$black_color:#3E3A3A;
+$content_width:100%;
+$content_All_color:#A7017A;
+$content_font_color:#FFFFFF;
+$content_black_color:#3E3A3A;
+$content_black:#000;
+$content_gray_color:#808285;
+$textColor:#2b2b2b;
+$returnColor:#9A9595;
+$nav_li_width:140px;
+$borderl:1px dashed rgba(#2b2b2b,0.5);
+$number-family:"Century Gothic";
+
+
+%indent{
+	display: block;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+%text-wrap{
+	display: block;
+	overflow : hidden;
+	text-overflow : ellipsis;
+	white-space : nowrap;
+}
+
+%Basic-setting{
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+%center-center{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin image-block($path,$cache:false){
+	@extend %indent;
+	background-image: image-url($path,false,$cache);
+	width: image-width($path);
+	height: image-height($path);
+}
+
+
+@mixin fontcontent($wweight,$ccolor:#666){
+	font-weight:$wweight;
+	letter-spacing: .05em;
+	color:$ccolor;
+}
+
+%setting{
+    display: block;
+    padding: 0;
+    margin: 0 auto; 
+}

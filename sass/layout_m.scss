@@ -1,0 +1,2843 @@
+@import "reset";
+@import "util";
+@font-face{
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v13/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+*{
+	@include box-sizing(border-box);
+}
+
+html{
+	*,*:after,*:before{
+		@include adjust-font-size-to ($base-font-size);
+	}
+	font-family:"Lato","微軟正黑體","Century Gothic","Microsoft JhengHei",sans-serif,"Apple LiGothic Medium","PMingLiU";
+
+}
+
+input[type ="button"] {
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	border-radius: 0;
+}
+
+html,body{
+	width:100%;
+	height:100%;
+	min-width: 320px;
+	position: relative;
+}
+
+#Wapper{
+	width: 100%;
+	height: auto;
+	max-width: 736px;
+	margin: 0 auto;
+}
+
+// 天
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 3;
+	.container{
+		@extend %Basic-setting;
+		max-width: 768px;
+		overflow: inherit;
+		position: relative;
+		.member_area{
+			@extend %Basic-setting;
+			height: 70px;
+			background-color: $content_font_color;
+			border-bottom: 5px solid $content_All_color;
+			overflow: hidden;
+			ul{
+				@extend %center-center;
+				height: 70px;
+				overflow: hidden;
+				li{
+					@include span(6);
+					text-align: center;
+					&:nth-child(1){
+						a{
+							display: inline-block;
+							margin: 0 auto;
+							span{
+								display:block;
+							    width: 30px;
+							    height: 3px;
+								background-color: $content_All_color;
+								margin: 5px 0;
+							}
+							&:before{
+								content: '';
+								display: block;
+							    width: 30px;
+							    height: 3px;
+								background-color: $content_All_color;
+							}
+							&:after{
+								content: '';
+								display: block;
+							    width: 30px;
+							    height: 3px;
+								background-color: $content_All_color;
+							}														
+						}
+
+					}
+					&:nth-child(2){
+						@include span(12);
+						a{
+							@extend %indent;
+							margin: 0 auto;
+							background-image: image-url("logo.png");
+							height: image-height("logo.png");
+							background-size: auto;
+							background-position: center center;
+							background-repeat:no-repeat;
+						}
+					}
+					&:nth-child(3){
+						a{
+							@extend %center-center;
+							display: inline-flex;
+							@include adjust-font-size-to(nth($font-list, 2) );
+							font-weight: bolder;
+							font-family: $number-family;
+							color: $content_All_color;
+							img{
+								display: inline-block;
+								margin-right: rhythm(0.5);
+
+							}
+						}
+					}
+				}
+			}
+		}
+		.nav_area{
+			display: none;
+			position: absolute;
+			top: 70px;
+			left:0;
+			z-index: 2;
+			width: 200px;
+			background-color: $content_black_color;
+			box-shadow: 0px 4px 12px rgba($content_black,0.3);
+			.memberlogn{
+				>ul{
+					li{
+						a{
+							display: block;
+							text-align: center;
+							color: $content_font_color;
+							background-color: $content_All_color;
+							@include adjust-font-size-to(nth($font-list, 3),4 );
+						}
+					}
+				}
+			}
+			.member{
+				background-color: $content_All_color;
+				display: block;
+				// 預設是後兩個li關閉，第一個顯示
+				>ul{
+					li{
+						display: none;
+						&:nth-child(1){
+							display: block;
+						}
+					}
+				}
+
+				// 點擊後動作樣式
+				.act{
+					li{
+						display: block;
+					}
+					.login{
+        				@include transition(all 0.5s);
+						&:before{
+							@include transform(rotate(-50deg));
+						}
+						&:after{
+							@include transform(rotate(50deg));
+						}						
+					}
+				}
+
+				// 點擊登入狀態樣式
+				.login{
+					position: relative;
+					&:before,&:after{
+						position: absolute;
+						top: 20px;
+						right: 20px;
+						content: "";
+						width: 15px;
+						height: 2px;
+						background-color: $content_font_color;
+						@include transform(rotate(50deg));
+        				@include transition(all 0.5s);
+					}
+					&:after{
+						top: 20px;
+						right: 10px;
+						@include transform(rotate(-50deg));
+					}
+					&:hover:before,&:hover:after{
+						background-color: $content_All_color;
+					}
+				}				
+				a{
+					color: $content_font_color;
+				}
+			}
+			ul{
+				li{
+					a{
+						display: block;
+						text-align: center;
+						color: $content_gray_color;
+						@include adjust-font-size-to(nth($font-list, 3),4 );
+						&:hover{
+							color: $content_All_color;
+							background-color: $content_font_color;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// 各館主打星區塊
+main{
+	display: block;
+	width: 100%;
+	padding-top: rhythm(1);
+	margin-top: rhythm(7);
+	position: relative;
+	// 主打星商品樣式
+	.starblock{
+		@extend %Basic-setting;
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content:space-between;
+			li{
+				width: 49%;
+				margin-bottom: rhythm(0.5);
+				.title_bg{
+					display: flex;
+    				align-items: center;
+					width: 100%;
+					height:40px;
+					color: $content_font_color;
+					background-color: $content_black; 
+					h1{
+						display: flex;
+    					align-items: center;
+    					padding-top: rhythm(0.5);
+    					padding-right: rhythm(0.5);
+    					padding-bottom: rhythm(0.5);
+    					padding-left: rhythm(0.5);
+    					width: 90%;
+						height: 25px;
+						font-weight: bolder;
+						border-radius: 0 15px 15px 0;
+						@include adjust-font-size-to(nth($font-list, 1) );
+						color:$content_black_color;
+						background: #c9caca;
+						span{
+							margin-right: rhythm(0);
+							@include adjust-font-size-to(nth($font-list, 1) );
+							color: $content_black_color;
+						}
+					}
+				}
+				a{
+					display: block;
+					.picimg{
+						display: block;
+						border:1px solid #DAD9D9;
+						img{
+							width: 100%;
+							height: auto;
+							&:hover{
+								@include transform(scale(0.9));
+							}							
+						}
+					}
+					.txtarea{
+						padding: rhythm(0.5);
+						color: $content_black;
+						font-family: "Lato","Century Gothic";
+						p{
+							@include adjust-font-size-to(nth($font-list, 2) );
+						}
+						dd{
+							display: inline-block;
+							text-decoration: line-through;
+							color:rgba($content_black,0.4);
+							@include adjust-font-size-to(nth($font-list, 1) );
+						}
+						dt{
+							display:block;
+							margin-left: rhythm(0);
+							color: $content_All_color;
+							@include adjust-font-size-to(nth($font-list, 2) );
+							span{
+								font-weight: bolder;
+								@include adjust-font-size-to(nth($font-list, 5) );
+							}
+							@include breakpoint(max-width 736px){
+								display:inline-block;
+								margin-left: rhythm(1);
+							};
+							@include breakpoint(max-width 480px){
+								display:block;
+								margin-left: rhythm(0);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// 中腰
+	.banner_bar{
+		display: block;
+		width: 100%;
+		margin-top: rhythm(1);
+		margin-bottom: rhythm(1);
+		a{
+			display: block;
+			width: 100%;
+			margin: 0 auto;
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+
+	// 主打星貨架商品樣式
+	.shelfblock{
+		@extend %Basic-setting;
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content:space-between;
+			li{
+				width: 49%;
+				margin-bottom: rhythm(0.5);
+				a{
+					display: block;
+					.picimg{
+						display: block;
+						border:1px solid #DAD9D9;
+						img{
+							width: 100%;
+							height: auto;
+							&:hover{
+								@include transform(scale(0.9));
+							}							
+						}
+					}
+					.txtarea{
+						padding: rhythm(1);
+						color: $content_black;
+						font-family:"Lato","Century Gothic";
+						p{
+							@include adjust-font-size-to(nth($font-list, 2) );
+						}
+						dd{
+							display: inline-block;
+							text-decoration: line-through;
+							color:rgba($content_black,0.4);
+							@include adjust-font-size-to(nth($font-list, 1) );
+						}
+						dt{
+							display:block;
+							margin-left: rhythm(0);
+							color: $content_All_color;
+							@include adjust-font-size-to(nth($font-list, 2) );
+							span{
+								font-weight: bolder;
+								@include adjust-font-size-to(nth($font-list, 5) );
+							}
+							@include breakpoint(max-width 736px){
+								display:inline-block;
+								margin-left: rhythm(1);
+							};
+							@include breakpoint(max-width 480px){
+								display:block;
+								margin-left: rhythm(0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		nav{
+			display: flex;
+		    align-items: center;
+		    justify-content: center;
+			margin: 10px auto;
+			text-align: center;
+			.prev,.next{
+				display: inline-block;
+				@extend %indent;
+				width: 30px;
+				height: 30px;
+				cursor: pointer;
+			}
+			.prev{
+				width: 0;
+				height: 0;
+				margin-right: rhythm(0.5);
+				border-style: solid;
+				border-width: 10px 20px 10px 0;
+				border-color: transparent #848484 transparent transparent;
+			}
+			.next{
+				width: 0;
+				height: 0;
+				margin-left: rhythm(0.5);
+				border-style: solid;
+				border-width: 10px 0 10px 20px;
+				border-color: transparent transparent transparent #848484;
+			}
+			ul{
+				display: inline-block;
+				overflow: hidden;
+				li{
+					width: 30px;
+					margin: 0 auto;
+					float: left;
+					a{
+						display: block;
+						height: 30px;
+						line-height: 30px;
+						text-align: center;
+						color:#848484;
+						font-family:"Lato","Century Gothic";
+						&.act{
+							color: $content_All_color;
+							text-decoration: underline;
+						}
+						&:hover{
+							text-decoration: underline;
+							color: $content_All_color;
+						}
+					}
+				}
+			}
+		}
+	}
+	// 商品資訊樣式
+	.productList{
+		@extend %Basic-setting;
+		padding:3%;
+		position: relative;
+		.product_picture{
+			display: inline-block;
+			width: 100%;
+			overflow: hidden;
+			border:1px solid #c5c5c5;
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
+		.product_txtlist{
+			display: inline-block;
+			width: 100%;
+			padding:0;
+			.contentbox{
+				color: $textColor;
+				font-weight: bolder;
+				letter-spacing: -0.5px;
+				overflow: hidden;
+				h1{
+					@include adjust-font-size-to(nth($font-list, 3) );
+				}
+				h2{
+					@include adjust-font-size-to(nth($font-list, 6) );
+				}
+				dd{
+					@include adjust-font-size-to(nth($font-list, 2) );
+					text-align: right;
+					font-weight: inherit;	
+					span{
+						@include adjust-font-size-to(nth($font-list, 2) );
+					}				
+				}
+				.textcontent{
+					border-top: $borderl;
+					border-bottom: $borderl;
+					padding: rhythm(1) 0;
+					p{
+						@include adjust-font-size-to(nth($font-list, 2),2.5);
+					}
+				}
+				.activitytxt{
+					p{
+						@include adjust-font-size-to(nth($font-list, 2),2.5);
+						color: #ff406e;
+					}
+				}				
+
+			}
+		}
+		.dropdown_list{
+			padding: rhythm(1) 0;
+			overflow: hidden;
+			.blockleft{
+				h3{
+					@include adjust-font-size-to(nth($font-list, 2) );
+					span{
+						display: inline-block;
+						@include adjust-font-size-to(nth($font-list, 2) );
+						border-radius: 15px;
+						padding:5px 10px;
+						margin-right: 5px;
+					}
+					a{
+						display: inline-block;
+						@include adjust-font-size-to(nth($font-list, 2) );
+						margin-left: 8px;
+						color: #ff5400;
+					}
+				}
+				.fromtab{
+					padding: 0 3%;
+					overflow: hidden;
+					.count{
+						margin: rhythm(1) 0;
+						@include span(24);
+						label{
+							@include adjust-font-size-to(nth($font-list, 2) );
+							display:block;
+						}
+						.select{
+							display:block;
+							width: 100%;					
+							select{
+								width: 100%;
+								font-size: 14px;
+								height:28px;
+								line-height: 28px;
+								border-radius: 5px;
+							}
+						}
+						h6{
+							display: inline-block;
+							@include adjust-font-size-to(nth($font-list, 1) );
+							span{
+								margin: 0 5px;
+							}
+						}
+					}
+				}
+			}
+			.blockright{
+				padding:0;
+				.monylist{
+					display: block;
+					width: 100%;
+					float: none;
+					div{
+						text-align: right;
+						padding:0 3%;					
+					}
+					h4{
+						display: inline-block;
+						@include adjust-font-size-to(nth($font-list, 1) );
+						color: #898888;
+						del{
+							@include adjust-font-size-to(nth($font-list, 1) );
+							font-family:"Lato","Century Gothic";
+						}
+					}
+					h5{
+						display: inline-block;
+						@include adjust-font-size-to(nth($font-list, 3) );
+						font-family:"Lato","Century Gothic";
+						color: #ef2d66;
+						margin-left: 5px;
+						span{
+							@include adjust-font-size-to(nth($font-list, 7) );
+							letter-spacing: -1px;
+							font-family:"Lato","Century Gothic";
+							font-weight: bold;
+						}
+					}
+				}
+
+			}
+		}
+		.product_specifications{
+			clear: both;
+			.conbox1{
+				h1{
+					border-bottom: 1px solid $textColor;
+					margin-bottom: 10px;
+					span{
+						display: inline-block;
+						background-color: $textColor;
+						padding: rhythm(0.5);
+						@include adjust-font-size-to(nth($font-list, 2) );
+						color: $content_font_color;
+					}
+				}
+				.contxt{
+					p{
+						@include adjust-font-size-to(nth($font-list, 2),3 );
+					}
+					ol{
+						list-style: decimal;
+						padding-left: 20px;
+						li{
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );;
+						}
+					}
+					img{
+						width: 100%;
+						height: auto;
+						margin: 0 auto;
+					}
+				}
+				.activitytxt{
+					p{
+						color: #ef2d66;
+					}
+				}
+				.contimg{
+					display: block;
+					padding:0;
+					margin: 0 auto;
+					img{
+						width: 100%;
+						height: auto;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+		.Success_added{
+			display: none;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background-color:rgba($content_black, 0.5);
+			@extend %center-center;
+			z-index: 2;
+			&.act{
+				display: flex;
+				animation-name: fadetoggle;
+    			animation-duration: 1s;
+			}
+		}
+			@include keyframes (fadetoggle) {
+			    0%{opacity: 0;}
+			    100%{opacity: 1;}
+			}
+		.monybotton{
+			display: block;
+			width: 100%;
+			padding: 2%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			background-color: $content_font_color;
+
+			ul{
+				overflow: hidden;
+				li{
+					@include span(24);
+					float: left;
+					border-radius: 8px;
+					a{
+						display:block;
+						text-align: center;
+						text-decoration: none;
+						color: $content_font_color;
+						@include adjust-font-size-to(nth($font-list, 4),4.5 );
+					}
+					&:nth-child(1){
+						background-color: $content_All_color;
+					}
+					&:nth-child(2){
+						background-color: #7cc33f;
+					}
+					&:hover{
+						&:nth-child(1){
+							background-color: #810C61;
+						}
+						&:nth-child(2){
+							background-color: #63b71b;
+						}	 
+					}
+
+				}
+			}
+		}				
+	}
+	// 會員登入樣式
+	.member_Login{
+		@extend %Basic-setting;
+		overflow: inherit;
+		h1{
+			@include adjust-font-size-to(nth($font-list, 3) );
+			color: $content_All_color;
+			font-weight: bolder;
+			text-align: center;
+		}
+		aside{
+			padding:0 3% 3% 3%;
+			box-shadow: 0px 5px 5px rgba($content_black,0.4);
+			overflow: hidden;
+			.userleft{
+				@include span(24 nest);
+				padding-left: rhythm(0.5);
+				padding-right: rhythm(0.5);
+				margin-bottom: 5%;
+			}
+			h2{
+				margin-top: rhythm(1);
+				font-weight: bolder;
+				@include adjust-font-size-to(nth($font-list, 3) );
+				span{
+					@include adjust-font-size-to(nth($font-list, 2) );
+					color:  $content_All_color;
+					margin-left: rhythm(0.5);
+				}
+			}
+			p{
+				text-align: center;
+				@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				letter-spacing:-0.5px;
+			}
+			h3{
+				display: block;
+				text-align: right;
+				margin-bottom: rhythm(1);
+				a{
+					display: inline-block;
+					color: $content_All_color;
+					font-weight: bolder;
+					span{
+						display: inline-block;
+						padding: rhythm(0.5);
+						padding-top: 0;
+						padding-bottom: 0;
+						color: $content_font_color;
+						background-color: $content_All_color;
+					}
+					&:hover{
+						color: $content_black_color;
+						span{
+							background-color: $content_black_color;
+						}
+					}
+				}
+			}
+			input{
+				width: 100%;
+				height: 44px;
+				padding-left:1%;
+				outline: none;
+				box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+				margin-top: rhythm(1);
+				margin-bottom: rhythm(1);
+				@include adjust-font-size-to(nth($font-list, 2) );
+				&:focus{
+					border:1px solid $content_All_color;
+				}
+			}
+			button{
+				width: 100%;
+				height: 44px;
+				text-align: center;
+				border:none;
+				color: $content_font_color;
+				cursor: pointer;
+				outline: none;
+				background-color: $content_All_color;
+				margin-top:2%;
+				&:hover{
+					background-color: $content_black_color;
+				}
+			}
+			ul{
+				padding:2% 0;
+				overflow: hidden;
+				li{
+					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					@include span(12);
+					text-align: center;
+					color: #2b2b2b;
+					border:1px solid #2b2b2b;
+					margin-bottom:3%;
+					cursor: pointer;
+					&.number_act{
+						color: $content_font_color;
+						background-color: $content_All_color;
+						border:1px solid $content_All_color;
+					}
+				}
+			}
+		}		
+	}
+	// 表單樣式
+	.forget_password,.return_application,.return_page,.shoppingdetails,.myorder,.myorder_list,.buyhelp,.return_process,.service,.privacy,.setpassowrd{
+		@extend %Basic-setting;
+		overflow: inherit;
+		width: 96%;
+		h1{
+			text-align: center;
+			font-weight: bolder;
+			color: $content_black_color;
+			@include adjust-font-size-to(nth($font-list, 4) );
+		}
+	}
+
+	// 表單陰影樣式
+	.forgetbox,.returnbox,.return_pagebox,.shopbox2,.orderlist,.myorderlist,.contbox{
+		padding:2%;
+		box-shadow: 0px 5px 5px rgba($content_black,0.4);
+		overflow: hidden;		
+	}
+
+	// 忘記密碼表單樣式
+	.forgetbox{
+		.box{
+			margin-bottom: 4%;
+			h2{
+				font-weight: bolder;
+				@include adjust-font-size-to(nth($font-list, 2) );
+				span{
+					@include adjust-font-size-to(nth($font-list, 2) );
+					margin-left: rhythm(1);
+					color:#A0A0A0;
+					dd{
+						display: inline-block;
+						margin-left: rhythm(0.2);
+						margin-right: rhythm(0.2);
+						font-family:"Lato","Century Gothic";
+					}
+					.sendbut{
+						display: inline-block;
+						width: inherit;
+						height: inherit;
+						box-shadow: none;
+						margin: 0 auto;
+						@include adjust-font-size-to(nth($font-list, 2) );
+						margin-left: rhythm(0.5);
+						color:#A0A0A0;
+						border:none;
+						outline:none;
+						background-color:transparent;
+						cursor: pointer;
+					}
+				}
+			}
+			input{
+				width: 100%;
+				height: 44px;
+				outline: none;
+				box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+				margin-top: 2%;
+				margin-bottom: 2%;
+				padding-left: 1%;
+				@include adjust-font-size-to(nth($font-list, 2) );
+				&:focus{
+					border:1px solid $content_All_color;
+					box-shadow: none;
+				}
+			}
+			h3{
+				font-weight: bolder;
+				@include adjust-font-size-to(nth($font-list, 2) );
+				color: $content_All_color;
+				overflow: hidden;
+				.sendbut{
+					display:inline-block;
+					width: inherit;
+					height: inherit;
+					box-shadow: none;
+					padding: 1% 2%;	
+					margin:0 auto;				
+					float: right;
+					color: $content_font_color;
+					background-color: $content_All_color;
+					@include adjust-font-size-to(nth($font-list, 2) );
+					border:none;
+					outline:none;
+					cursor: pointer;
+					&:hover{
+						background-color: $content_black_color;
+					}
+				}
+			}				
+		}		
+	}
+
+	// 退貨申請表單樣式
+	.return_application{
+		.returnbox{
+			aside{
+				h1{
+					display:block;
+					font-weight: bolder;
+					text-align: left;
+				}
+				.count{
+					overflow: hidden;
+					margin-bottom:3%;
+					.left{
+						@include span(24 nest);
+						@include breakpoint(max-width 768px){
+							@include span(12);
+						};
+						@include breakpoint(max-width 480px){
+							@include span(24 nest);
+						};
+
+					}
+					.right{
+						display: block;
+						@include span(24 nest);
+						@include breakpoint(max-width 768px){
+							@include span(12);
+						};
+						@include breakpoint(max-width 480px){
+							@include span(24 nest);
+						};						
+					}
+					input{
+						display: inline-block;
+						width: 100%;
+						height: 44px;
+						margin-top: 0;
+						margin-bottom: 0;
+						margin-left:0;
+						margin-right:2%;
+						padding-left:1%;
+						text-overflow : ellipsis;
+						white-space : nowrap;
+						overflow: hidden;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);					
+					}
+					.returninput{
+						display:block;
+						p{
+							position: relative;	
+							width: 100%;
+							height: 44px;
+							cursor: pointer;
+							box-shadow: inset 1px 1px 2px rgba($content_black,0.5);
+							cursor: pointer;
+							text-overflow: ellipsis;
+						    white-space: nowrap;
+						    overflow: hidden;
+						    @include adjust-font-size-to(nth($font-list, 2) );
+							&:before{
+								content: "";
+								position: absolute;
+								display: block;
+								top: 14px;
+								right: 10px;
+								width: 0;
+								height: 0;
+								border-style: solid;
+								border-width: 15px 10px 0 10px;
+								border-color: $content_black_color transparent transparent transparent;
+							}	
+						}
+						textarea{
+							display:none;
+							width: 98%;
+							height: 44px;
+							padding: 0;
+							margin: 1% auto;
+							resize: none;
+							@include adjust-font-size-to(nth($font-list, 2) );
+						}
+					}
+					.returnitem{
+						display: none;
+						width:100%;
+						margin-top:2%;
+						padding:2%;
+						box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.5);
+						.issue{
+							p{
+								@include adjust-font-size-to(nth($font-list, 3),2.8 );
+								color: $content_All_color;
+								font-weight: bolder;
+								// border-bottom:1px solid $content_All_color;
+								margin-top: rhythm(0.5);
+							}
+							ul{
+								list-style: decimal;
+								padding-left:5%;
+								li{
+									color:$returnColor;
+									cursor: pointer;
+									@include adjust-font-size-to(nth($font-list, 2),2.5);
+									&:hover{
+										color: $content_black;
+									}
+									&.add{
+										color: $content_black;
+									}
+								}
+							}
+						}
+					}
+					button{
+						width: 15%;
+						height: 44px;
+						border:none;
+						outline: none;
+						padding-left: 1%;
+						padding-right: 1%;
+						color: $content_font_color;
+						background-color: $content_All_color;
+						cursor: pointer;
+						&:hover{
+							background-color: $content_black_color;
+						}
+					}
+				}
+			}
+		}
+		.button{
+			display: block;
+			margin: 0 auto;
+			padding:2%;
+			margin-top: 3%;
+			text-align: center;
+			overflow: hidden;
+			button{
+				@include span(12);
+				@include breakpoint(max-width 480px){
+					@include span(24);
+				};
+				height: 44px;
+				border:none;
+				outline: none;
+				padding-left: 1%;
+				padding-right: 1%;
+				margin-top: 1%;
+				margin-bottom: 1%;
+				color: $content_font_color;
+				background-color: $content_All_color;
+				cursor: pointer;
+				&:nth-child(1){
+					background-color: $content_gray_color;
+				}
+				&:hover{
+					background-color: $content_black_color;
+				}				
+			}
+		}
+	}
+
+	// 退貨申請完成表單樣式
+	.return_pagebox{
+		.Return_code{
+			text-align: center;
+			margin-bottom:5%;
+			h4{
+				padding-top:2%;
+				padding-bottom:2%;
+				text-align: center;
+				color: $content_All_color;
+				font-weight: bolder;
+				@include adjust-font-size-to(nth($font-list, 3) );
+			}
+			h5{
+				color: $content_All_color;
+				@include adjust-font-size-to(nth($font-list, 6) );
+				font-family:"Lato","Century Gothic";
+				letter-spacing: 0.1em;
+			}
+			h6{
+				font-weight: bolder;
+			}	
+			p{
+				padding: 2% 0;
+				color:$returnColor;
+				@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				span{
+					color: $content_black;
+					font-weight: bolder;
+				}
+			}					
+		}
+		ol{
+			list-style: decimal;
+			padding-left:5%;
+			li{
+				color:$returnColor;
+				@include adjust-font-size-to(nth($font-list, 2),2.5);
+				span{
+					color: $content_black;
+					font-weight: bolder;
+				}					
+			}
+		}					
+	}
+
+	// 共用退貨/款資、付款方式訊文字樣式
+	.Return_information,.payment_information{
+		@extend %Basic-setting;
+		width: 100%;
+		overflow: hidden;
+		margin-top: 5%;
+		margin-bottom: 2%;
+		h2{
+			text-align: center;
+			font-weight: bolder;
+			color: $content_black_color;
+			padding-bottom: 2%;
+			@include adjust-font-size-to(nth($font-list, 4) );
+		}
+		ul{
+			list-style: none;
+			overflow: hidden;
+			li{
+				@include span(24);
+				@include adjust-font-size-to(nth($font-list, 2),2.5);
+				font-weight: bold;
+				list-style: none;
+				text-align: center;
+				margin-top: 2%;
+				margin-bottom: 2%;
+			}
+		}			
+	}
+	// 共用注意事項文字樣式
+	.text{
+		ul{
+			list-style: decimal;
+			padding-left:5%;
+			li{
+				color: $returnColor;
+				@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				span{
+					color: $content_black;
+					font-weight: bolder;
+				}
+			}
+		}				
+	}
+
+	// 購物車明細表
+	.shoppingdetails{	
+		.Step_flow{
+			width: 100%;
+			margin:2% auto;
+			overflow: hidden;
+			ul{
+				overflow: hidden;
+				position: relative;
+				li{
+					@include span(8);
+					text-align: center;
+					font-weight: bolder;
+					@include adjust-font-size-to(nth($font-list, 2) );
+					span{
+						display: flex;
+					    align-items: center;
+					    justify-content: center;
+						width: 25px;
+						height: 25px;
+						margin: 0 auto;
+						margin-bottom:10%;
+						color: $content_font_color;
+						background-color: $content_gray_color;
+						border-radius: 50%;
+					}
+					&.step{
+						color: $content_All_color;
+						span{
+							background-color: $content_All_color;
+						}
+					}
+				}
+				&:before{
+					content: "";
+					position: absolute;
+					top: 20%;
+					left: 15%;
+					display: block;
+					width: 70%;
+					height: 1px;
+					background-color: $content_gray_color;
+					z-index: -1;
+				}
+			}
+		}
+		h1{
+			margin-top: 6%;
+			text-align: center;
+			font-weight: bolder;
+			color: $content_black_color;
+			@include adjust-font-size-to(nth($font-list, 4) );
+		}
+		.shopbox{
+			margin-top: 5%;
+			border-bottom: 1px solid $content_All_color;
+			.manytotal{
+				clear: both;
+				overflow: hidden;
+				h6{
+					display: block;
+					@include adjust-font-size-to(nth($font-list, 2) );
+					padding:1% 0 2% 0;					
+					span{
+						float: right;
+					}
+				}
+			}
+		}
+		.shopbox1{
+			padding-bottom: 0;
+			position: relative;
+			.freight{
+				display: flex;
+			    align-items: center;
+			    justify-content: space-between;
+				padding:2% 0;
+				border-bottom: 1px solid $content_All_color;
+				.radio {
+				    display: none;
+				}
+				.radioInput {
+				    background-color: #fff;
+				    border: 1px solid rgba(0, 0, 0, 0.15);
+				    border-radius: 100%;
+				    display: inline-block;
+				    width: 20px;
+				    height: 20px;
+				    margin-right: 10px;
+				    margin-top: -1px;
+				    vertical-align: middle;
+				    line-height: 1;
+				}
+				.radio:checked+.radioInput:after {
+				    background-color:$content_All_color;
+				    border-radius: 100%;
+				    content: "";
+				    display: inline-block;
+				    width: 12px;
+				    height: 12px;
+				    margin: 3px;
+				}
+				.radioInput,.radio:checked {
+				    border-radius: 100%;
+				}
+				dt,label{
+					@include adjust-font-size-to(nth($font-list, 2) );
+				}
+
+			}
+			.total_amount{
+				padding: 1% 0;
+				@include adjust-font-size-to(nth($font-list, 2),3 );
+				text-align: right;
+				font-weight: bolder;
+				span{
+					margin-left:1%;
+					color: $content_All_color;
+					@include adjust-font-size-to(nth($font-list, 4) );
+				}
+			}			
+		}
+		.shoppingbot{
+		 	padding: 5% 3% 0 3%;
+		 	overflow: hidden;
+		 	@include breakpoint(max-width 480px){
+		 		padding: 8% 3% 0 3%;	
+		 	};	 	
+			button{
+				@include span(12);
+				padding: 2%;
+				border:none;
+				outline: none;
+				cursor: pointer;
+				color: $content_font_color;
+				background-color: $content_All_color;
+				@include breakpoint(max-width 480px){
+					@include span(24);
+					margin-bottom: 3%;
+				};
+				&:nth-child(1){
+					background-color:$content_gray_color; 
+					position: relative;					
+				}
+				&:hover{
+					background-color: $content_black_color;
+				}
+			}
+			&.bt1{
+				overflow: hidden;
+				padding: 5% 3% ;
+				button{
+					@include span(24);
+					padding: 2%;
+					border:none;
+					outline: none;
+					cursor: pointer;
+					color: $content_font_color;
+					background-color: $content_All_color;
+					&:hover{
+						background-color: $content_black_color;
+					}
+				}				
+			}
+		}
+		.shopbox2{
+			.box{
+				overflow: hidden;
+				margin-bottom:3%;
+				.boxleft{
+					@include span(24);
+					h2{
+						width:100%;
+						font-weight: bolder;
+						@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						  text-align:left;
+					}
+				}
+				.boxright{
+					@include span(24);
+					input{
+						display: block;
+						outline: none;
+						width: 100%;
+						height: 44px;
+						padding-left: 1%;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						@include adjust-font-size-to(nth($font-list, 2) );
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}
+					}
+					.number{
+						display: inline-block;
+						width: 83%;
+					}
+					button{
+						padding: 2%;
+						width: 15%;
+						height: 44px;
+						border:none;
+						outline: none;
+						cursor: pointer;
+						@include adjust-font-size-to(nth($font-list, 2) );
+						color: $content_font_color;
+						background-color: $content_All_color;
+						&:hover{
+							background-color: $content_black_color;
+						}			
+					}
+					p{
+						color: $content_All_color;
+						@include adjust-font-size-to(nth($font-list, 1) );
+					}
+					select{
+						width: 48%;
+						height: 44px;
+						margin-right: 1%;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						outline: none;
+						cursor: pointer;
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}
+						&:nth-child(2){
+							margin-left: 4px;
+							margin-right: 0;
+						}						
+					}
+				}
+				.boxright1{
+					@include span(20);
+					.label {
+					    margin:0;
+					    display: inline-block;
+					    color:$content_All_color; 
+						font-weight: bolder;
+						@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						cursor: pointer;
+					}
+					.radio {
+					    display: none
+					}
+					.radioInput {
+					    background-color: #fff;
+					    border: 2px solid $content_All_color;
+					    display: inline-block;
+					    width: 18px;
+					    height: 18px;
+					    margin-right: 5px;
+					    margin-top: -1px;
+					    vertical-align: middle;
+					    line-height: 1;
+					}
+					.radio:checked+.radioInput:after {
+					    background-color:$content_All_color;
+					    content: "";
+					    display: inline-block;
+					    width: 10px;
+					    height: 10px;
+					    margin: 2px;   
+					}
+					.checkbox.radioInput,.radio:checked+.checkbox.radioInput:after {
+					    border-radius: 0
+					}
+				}
+				.maplist{
+					@include span(12 nest);
+					height: 300px;
+					overflow-y:scroll; 					
+					@include breakpoint(max-width 480px){
+						@include span(24 nest);
+						height: 200px;
+					};
+
+					ul{
+						li{
+							padding-top: rhythm(0.3);
+							padding-bottom: rhythm(0.3);
+							border-bottom: 1px dashed  $content_black_color;
+							a{
+								position: relative;
+								display: block;
+								padding: rhythm(0.2);
+								margin-left:14%;
+								&:before{
+									content: "";
+									position: absolute;
+								    top: 10%;
+								    left: -15%;
+									background-image: image-url("Icon_map.png");
+									width:35px;
+									height:35px;
+									background-size:100%;
+								}
+								p{
+									color: $content_black_color;
+									@include adjust-font-size-to(nth($font-list, 1) );
+								}
+							}
+							&:hover{
+								background-color:#E0E0E0;
+							}
+						}
+					}
+				}
+				.mapinfo{
+					@include span(12 nest);
+					height:300px;
+					// background-color: green;
+					@include breakpoint(max-width 480px){
+						@include span(24 nest);
+					};					
+				}
+			}
+		}
+		.agreebox{
+			padding-top: rhythm(2);
+			padding-bottom: rhythm(1);
+			.label {
+			    margin:0;
+			    display: inline-block;
+				font-weight: bolder;
+				@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				cursor: pointer;
+				a{
+					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					color:$content_All_color; 
+				}
+			}
+			.radio {
+			    display: none
+			}
+			.radioInput {
+			    background-color: #fff;
+			    border: 2px solid $content_All_color;
+			    display: inline-block;
+			    width: 18px;
+			    height: 18px;
+			    margin-right: 5px;
+			    margin-top: -1px;
+			    vertical-align: middle;
+			    line-height: 1;
+			}
+			.radio:checked+.radioInput:after {
+			    background-color:$content_All_color;
+			    content: "";
+			    display: inline-block;
+			    width: 10px;
+			    height: 10px;
+			    margin: 2px;   
+			}
+			.checkbox.radioInput,.radio:checked+.checkbox.radioInput:after {
+			    border-radius: 0
+			}
+		}
+		.Complete_order{
+			margin-top:3%;
+			.orderlist{
+				margin-top: 2%;
+				margin-bottom: 2%;
+				.totalist{
+					padding: 2%;
+					h2{
+						@include adjust-font-size-to(nth($font-list, 3),3 );
+						font-weight: bolder;
+						span{
+							display:inline-block;
+							width: 70px;
+							@include adjust-font-size-to(nth($font-list, 3),3 );
+						}
+						&:nth-child(2){
+							color: $content_All_color;
+						}
+					}
+					h3{
+						display: block;
+						margin-top: 2%;
+						text-align: center;
+						color: $content_font_color;
+						background-color: $content_gray_color;
+						@include adjust-font-size-to(nth($font-list, 3),3 );
+						position: relative;
+						.xx{
+							display: block;
+							width: 25px;
+							height: 25px;
+							position: absolute;
+							top: 2px;
+							right: 4px;
+							cursor: pointer;
+							&:before,&:after{
+								position: absolute;
+							    content: '';
+							    display: block;
+							    width: 15px;
+							    height: 3px;
+							    background-color: $content_font_color;
+								top: 2px;
+        						@include transition(all 0.5s);
+							}
+							&:before{
+								@include transform(translateY(10px) rotate(45deg));
+								right: 8px;
+							}
+							&:after{
+								@include transform(translateY(10px) rotate(-45deg));
+								position: absolute;
+								right: 0px;
+							}
+
+							&.active{
+        						 @include transition(all 0.5s);
+								 &:before{
+									@include transform(translateY(10px) rotate(-45deg));
+								 }
+								 &:after{
+									@include transform(translateY(10px) rotate(45deg));
+								 }
+							} 
+						}
+					}
+					.listcont{
+						display: none;
+						overflow: hidden;
+						.cont{
+							padding-top: 1%;
+							padding-bottom: 1%;
+							border-bottom: 1px dashed $content_black_color;
+							p{
+								@include adjust-font-size-to(nth($font-list, 2),2.5);
+								&:nth-child(2),&:nth-child(3){
+									@include span(12 nest);
+								}
+							}
+						}
+					}
+				}		
+				.shopbox3{
+					h2{
+						@include span(24);
+						@include adjust-font-size-to(nth($font-list, 2),3 );
+						overflow: hidden;
+						p{
+							display: inline-block;
+							font-weight: bolder;
+							width: 35%;
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						}
+						span{
+							color: $content_gray_color;
+							margin-left:2%;
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						}
+						dd{
+							color: $content_gray_color;
+							margin-left: 37%;
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+
+						}
+					}
+					div{
+						clear: both;
+						margin: 0 auto;
+						padding:2% 0;
+						text-align: center;
+					}
+					div>button{
+						width: 60%;	
+						padding: 2%;
+						border:none;
+						outline: none;
+						cursor: pointer;
+						color: $content_font_color;
+						background-color: $content_All_color;
+						&:hover{
+							background-color: $content_black_color;
+						}							
+					}
+				}
+			}
+		}
+		.shopinfo{
+			margin-top: 5%;
+			&>ul{
+				overflow: hidden;
+				&>li{
+					display: flex;
+    				align-items: center;
+    				border-top: 1px solid $content_black_color;
+    				padding: 2% 0;
+					.nono{
+						@include span(2 nest);
+						a{
+							display: block;									
+							width: 20px;
+							height: 20px;
+							margin: 0 auto;
+							dd{
+								display: block;
+								&:before,&:after{
+									content: "";
+									display: block;
+									width: 100%;
+									height: 5px;
+							   		background-color: $content_All_color;
+								}
+								&:before{
+            						@include transform(translateY(10px)rotate(45deg));
+								}
+								&:after{
+            						@include transform(translateY(5px)rotate(-45deg));
+								}
+							}								
+						}
+					}
+					.picimg{
+						@include span(6 nest);
+						img{
+							width: 100%;
+							height: auto;
+						}
+					}
+					.proinfo{
+						@include span(16 nest);
+						ul{
+							li{
+								@include adjust-font-size-to(nth($font-list, 1) );
+								margin-bottom: 1%;
+								&:nth-child(odd){
+									@include span(7);
+								}
+								&:nth-child(even){
+									@include span(17);
+								}
+								&:nth-child(4){
+									text-overflow: ellipsis;
+								    white-space: nowrap;
+								    overflow: hidden;
+								}
+								.tdbox6{
+									input{
+										border:none;
+										outline: none;
+										text-align: center;
+										box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+										height: 24px;
+										margin: 0 auto;
+										padding: 0;
+									}
+									input[type="button"]{
+										width: 20%;
+										cursor: pointer;
+										border-radius: 0;
+										text-align: center;
+										background-color:#C8C8C8;
+										&:hover{
+											background-color:#f1f1f1;
+										}
+									}
+									input[type="number"]{
+										width: 50%;
+										-webkit-appearance: none;
+									    -moz-appearance: none;
+									    appearance: none;
+									    border:1px solid #E5E5E5;
+									}
+									input[type="number"]::-webkit-inner-spin-button, 
+									input[type="number"]::-webkit-outer-spin-button { 
+									  -webkit-appearance: none; 
+									  margin: 0; 
+									}
+								}								
+							}
+						}
+					}
+					&:last-child{
+    					border-bottom: 1px solid $content_black_color;
+					}
+				}
+			}
+		}
+	}
+
+	// 訂單明細
+	.myorder{
+		.myorderlist{
+			margin-bottom: 5%;
+			.listitle{
+				position: relative;
+				display: block;
+				a{
+				    position: absolute;
+				    top: 0;
+				    left: 0;
+				    display: inline-block;
+				    width: 30px;
+				    height: 30px;
+				    border: 1px solid $content_black_color;
+				    @extend %indent;
+				    &:before{
+				    	position: absolute;
+					    top: 8px;
+					    left: 4px;
+					    content: "";
+					    width: 0;
+					    height: 0;
+					    border-style: solid;
+					    border-width: 14px 10px 0 10px;
+					    border-color: $content_black_color transparent transparent transparent;
+				    }
+					&.act:before{
+						border-width: 0px 10px 14px 10px;
+						border-color: transparent transparent $content_black_color transparent;	
+					}
+					&:hover{
+						border:1px solid $content_All_color;
+						&:before{
+							border-color: $content_All_color transparent transparent transparent;	
+						}
+						&.act:before{
+							border-color: transparent transparent $content_All_color transparent;	
+						}
+					}						    
+				}
+				h2{
+					display:block;
+					font-weight: bolder;
+					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					padding-left: 45px;
+					span{
+						color:$content_All_color;
+						@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					}
+				}
+			}
+			.total_list_cont{
+				padding: 0 3%;
+				.contbox{
+					overflow: hidden;
+					margin-bottom: 5%;
+					.inventory{
+						ul{
+							overflow: hidden;
+							li{
+								@include span(16 nest);
+								@include adjust-font-size-to(nth($font-list, 2),2.5 );
+								height: 25px;
+								color: $content_gray_color;
+								&:nth-child(odd){
+									@include span(8 nest);
+								}
+								&:nth-child(7),&:nth-child(8){
+									color: $content_All_color;
+								}
+								&:nth-child(10){
+									span{
+										display: inline-block;
+										@include adjust-font-size-to(nth($font-list, 2),2 );
+									}
+									.mode1{
+										padding: 0% 2%;
+										color: $content_All_color;
+										border:1px solid $content_All_color;
+									}
+									.mode2{
+										padding: 1% 2%;
+										@include adjust-font-size-to(nth($font-list, 2),2 );
+										background-color: $content_All_color;
+										color: $content_font_color;
+										border: none;
+									    outline: none;
+									    cursor: pointer;
+									    &:hover{
+									    	background-color: $content_black_color;
+									    }
+									}
+									.mode3{
+										color: $content_black_color;
+									}
+								}
+							}
+						}
+					}
+					.order_button{
+						margin-top: 2%;
+						margin-bottom: 2%;
+						ul{
+							overflow: hidden;
+							li{
+								text-align: center;
+								@include span(12);
+								@include adjust-font-size-to(nth($font-list, 3),3 );
+								color: $content_font_color;
+								background-color: $content_gray_color;
+								cursor: pointer;
+								&:hover,&.act{
+									background-color: $content_All_color;
+
+								}
+							}
+						}
+					}
+					.order_details{
+						display: none;
+						.returncont{
+							overflow: hidden;
+							margin-bottom: 1%;
+							.right{
+								text-align: right;
+								float: right;
+								h4{
+									display: block;
+									overflow: hidden;
+									.returnbt{
+										display:inline-block;
+										margin-top: 25%;
+										box-shadow: none;
+										color: $content_font_color;					
+										background-color: $content_gray_color;
+										@include adjust-font-size-to(nth($font-list, 3),3 );
+										border:none;
+										outline:none;
+										cursor: pointer;
+										border-radius: 0;
+										appearance: none;
+										&:hover{
+											background-color: $content_All_color;
+										}									
+									}
+									.label {
+									    margin:0;
+									    display: inline-block;
+									    color:$content_All_color; 
+										font-weight: bolder;
+										@include adjust-font-size-to(nth($font-list, 3),2.5 );
+										cursor: pointer;
+									}
+									.radio {
+									    display: none
+									}
+									.radioInput {
+									    background-color: $content_font_color;
+									    border: 2px solid $content_All_color;
+									    display: inline-block;
+									    width: 20px;
+									    height: 20px;
+									    margin-top: -3px;
+									    vertical-align: middle;
+									    line-height: 1;
+									}
+									.radio:checked+.radioInput:after {
+									    background-color:$content_All_color;
+									    content: "";
+									    display: inline-block;
+									    width: 12px;
+									    height: 12px;
+									    margin: 2px;   
+									}
+									.checkbox.radioInput,.radio:checked+.checkbox.radioInput:after {
+									    border-radius: 0
+									}
+								}							
+							}
+						}
+						.contoverflow{
+							height: 190px;
+							overflow-y:scroll;
+						}						
+						.cont{
+							position: relative;
+							overflow: hidden;
+							padding-top: 2%;
+							padding-bottom: 2%;
+							border-bottom:1px dashed $content_black_color;
+							.left,.right{
+								h4{
+									display: block;
+									overflow: hidden;
+									p{
+										@include adjust-font-size-to(nth($font-list, 2),2 );
+										color: $content_gray_color;
+										&.return{
+											color: $content_All_color;
+										}
+										&.returnstep{
+											display: block;
+											text-align: center;
+											cursor: pointer;
+											color: $content_font_color;
+											background-color: $content_All_color;
+											&:hover,&.act{
+												background-color: $content_black_color;
+											}
+
+										}								
+									}
+									.returnbt{
+										display:inline-block;
+										width: 65px;
+										box-shadow: none;
+										margin:0 auto;
+										padding-top: rhythm(0.5);
+										padding-right: rhythm(1);
+										padding-bottom: rhythm(0.5);
+										padding-left: rhythm(1);
+										margin-right: rhythm(2);
+										color: $content_font_color;					
+										background-color: $content_gray_color;
+										@include adjust-font-size-to(nth($font-list, 3) );
+										border:none;
+										outline:none;
+										cursor: pointer;
+										&:hover{
+											background-color: $content_All_color;
+										}									
+									}
+									.label {
+									    margin:0;
+									    display: inline-block;
+									    color:$content_All_color; 
+										font-weight: bolder;
+										@include adjust-font-size-to(nth($font-list, 3),2.5 );
+										cursor: pointer;
+									}
+									.radio {
+									    display: none
+									}
+									.radioInput {
+									    background-color: $content_font_color;
+									    border: 2px solid $content_All_color;
+									    display: inline-block;
+									    width: 20px;
+									    height: 20px;
+									    margin-top: -3px;
+									    vertical-align: middle;
+									    line-height: 1;
+									}
+									.radio:checked+.radioInput:after {
+									    background-color:$content_All_color;
+									    content: "";
+									    display: inline-block;
+									    width: 12px;
+									    height: 12px;
+									    margin: 2px;   
+									}
+									.checkbox.radioInput,.radio:checked+.checkbox.radioInput:after {
+									    border-radius: 0
+									}																	
+								}
+							}
+							.left{
+								position: relative;
+							}
+							.right{
+								position: absolute;
+								bottom: 10%;
+								right: 0;
+								text-align: right;	
+							}
+							.status{
+								clear: both;
+								display:none;
+								overflow: hidden;
+								margin-top: 2%;
+								ul{
+									overflow: hidden;
+									li{
+										color: $content_black_color;
+										border:none;
+										position: relative;
+										text-align: left;
+										@include adjust-font-size-to(nth($font-list, 2),2.5 );
+										padding-bottom: 3%;		
+										&.step{
+											&:before{
+												background-color: $content_All_color;
+											}
+										}
+										&:before{
+											content: "";
+											position: relative;
+											top: 3px;
+											display:inline-block;
+										    width: 15px;
+										    height: 15px;
+										    border-radius: 100%;
+										    background-color: $content_gray_color;
+											margin-right: 5px;
+										}
+										&:after{
+											content: "";
+											display:block;
+											width: 1px;
+											height: 100%;
+											background-color: $content_gray_color;
+											position: absolute;
+											left: 7px;
+											top: 15px;
+											z-index: -1;
+										}
+										&:last-child{
+											&:after{
+												display: none;
+											}
+										}
+
+										b{
+											display: block;
+											@include adjust-font-size-to(nth($font-list, 1),2 );
+											padding-left:20px;
+											margin:-5px auto 0 auto;
+											color: $content_gray_color;
+											&.fail{
+												color:$content_All_color;
+											}
+										}
+									}
+								}						
+							}							
+						}
+					}
+					.order_progress{
+						display: none;
+						overflow: hidden;
+						margin-top: 2%;
+						.status{
+							@include span(18 nest);
+							overflow: hidden;
+							ul{
+								overflow: hidden;
+								li{
+									color: $content_black_color;
+									border:none;
+									position: relative;
+									text-align: left;
+									@include adjust-font-size-to(nth($font-list, 2),2.5 );
+									padding-bottom: 3%;		
+									&.step{
+										&:before{
+											background-color: $content_All_color;
+										}
+									}
+									&:before{
+										content: "";
+										position: relative;
+										top: 3px;
+										display:inline-block;
+									    width: 15px;
+									    height: 15px;
+									    border-radius: 100%;
+									    background-color: $content_gray_color;
+										margin-right: 5px;
+									}
+									&:after{
+										content: "";
+										display:block;
+										width: 1px;
+										height: 100%;
+										background-color: $content_gray_color;
+										position: absolute;
+										left: 7px;
+										top: 15px;
+										z-index: -1;
+									}
+									&:last-child{
+										&:after{
+											display: none;
+										}
+									}
+
+									b{
+										display: block;
+										@include adjust-font-size-to(nth($font-list, 1),2 );
+										padding-left:20px;
+										margin:-5px auto 0 auto;
+										color: $content_gray_color;
+										&.fail{
+											color:$content_All_color;
+										}
+									}
+								}
+							}						
+						}
+						.status_button{
+							@include span(6 nest);
+							display: inline-block;
+							text-align: center;
+							overflow: hidden;
+							// float: right;
+							a{
+								display: block;									
+								margin: 0 auto;
+								@include adjust-font-size-to(nth($font-list, 2),2.5 );
+								color: $content_black_color;
+								dd{
+									display: block;
+									width: 20px;
+									height: 20px;							
+									margin: 0 auto;
+									&:before,&:after{
+										content: "";
+										display: block;
+										width: 100%;
+										height: 5px;
+								   		background-color: $content_All_color;
+									}
+									&:before{
+	            						@include transform(translateY(10px)rotate(45deg));
+									}
+									&:after{
+	            						@include transform(translateY(5px)rotate(-45deg));
+									}
+								}								
+							}									
+						}							
+					}
+
+				}
+			}
+			.recipient_information{
+				.shopbox3{
+					h2{
+						@include span(24);
+						@include adjust-font-size-to(nth($font-list, 2),3 );
+						overflow: hidden;
+						p{
+							display: inline-block;
+							font-weight: bolder;
+							width: 35%;
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						}
+						span{
+							color: $content_gray_color;
+							margin-left:2%;
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						}
+						dd{
+							color: $content_gray_color;
+							margin-left: 37%;
+							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+
+						}
+					}
+					div{
+						clear: both;
+						margin: 0 auto;
+						padding:2% 0;
+						text-align: center;
+					}
+					div>button{
+						width: 60%;	
+						padding: 2%;
+						border:none;
+						outline: none;
+						cursor: pointer;
+						color: $content_font_color;
+						background-color: $content_All_color;
+						&:hover{
+							background-color: $content_black_color;
+						}							
+					}
+				}				
+			}
+			
+		}
+	}
+
+	// 服務條款
+	.service,.privacy{
+		.textbox{
+			padding: 2%;
+			margin-top:1%;
+			margin-bottom:3%;
+			border:1px solid $content_All_color;
+			p{
+				color: $textColor;
+				@include adjust-font-size-to(nth($font-list, 2),2 );
+			}
+		}
+		.text{
+			padding-left:2%;
+			h2{
+				@include adjust-font-size-to(nth($font-list, 3) );
+				margin-top: 2%;
+				margin-bottom:2%;
+			}
+			ol{
+				list-style: decimal;
+				padding-left:5%;
+				li{
+					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					p{
+						@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					}
+					a{
+						display: inline-block;
+						color:$content_All_color;
+						word-break: break-all;
+					}
+				}
+			}
+			h3{
+				@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				margin-bottom: 2%;
+			}
+			h4{
+				padding-left:5%;
+				@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				span{
+					@include adjust-font-size-to(nth($font-list, 2) );
+				}
+			}
+		}
+	}
+
+	// 購物小幫手&退貨流程
+	.buyhelp,.return_process{
+		h2{
+			margin-top: 1%;
+			margin-bottom: 1%;
+			@include adjust-font-size-to(nth($font-list, 2) );
+			color: $content_All_color;
+			text-align: center;
+			font-weight: bolder;
+		}
+		.contentimg{
+			margin-top:4%;
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
+		.textbox{
+			h3{
+				display: block;
+				color: $content_font_color;
+				background-color: $returnColor;
+				text-align: center;
+				@include adjust-font-size-to(nth($font-list, 4),3.5 );
+				margin-bottom: rhythm(1.5);
+			}
+			ol{
+				list-style: decimal;
+				padding-left: rhythm(2);
+				li{
+					@include adjust-font-size-to(nth($font-list, 3),3);
+				}
+			}
+		}
+	}
+
+	// 設定密碼
+	.setpassowrd{
+		.shopbox2{
+			.box{
+				overflow: hidden;
+				margin-bottom:3%;
+				.boxleft{
+					@include span(24);
+					h2{
+						width:100%;
+						font-weight: bolder;
+						@include adjust-font-size-to(nth($font-list, 2),2.5 );
+						  text-align:left;
+					}
+				}
+				.boxright{
+					@include span(24);
+					input{
+						display: block;
+						outline: none;
+						width: 100%;
+						height: 44px;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						@include adjust-font-size-to(nth($font-list, 2) );
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}
+					}
+					.number{
+						display: inline-block;
+						width: 83%;
+					}
+					button{
+						padding: 2%;
+						width: 15%;
+						height: 44px;
+						border:none;
+						outline: none;
+						cursor: pointer;
+						@include adjust-font-size-to(nth($font-list, 2) );
+						color: $content_font_color;
+						background-color: $content_All_color;
+						&:hover{
+							background-color: $content_black_color;
+						}			
+					}
+					p{
+						color: $content_All_color;
+						@include adjust-font-size-to(nth($font-list, 1) );
+					}
+					select{
+						width: 48%;
+						height: 44px;
+						margin-right: 1%;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						outline: none;
+						cursor: pointer;
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}
+						&:nth-child(2){
+							margin-left: 4px;
+							margin-right: 0;
+						}						
+					}
+				}
+			}
+		}
+		.shoppingbot{
+		 	padding: 5% 3% 0 3%;
+		 	overflow: hidden;
+		 	@include breakpoint(max-width 480px){
+		 		padding: 8% 3% 0 3%;	
+		 	};		 	
+			button{
+				@include span(12);
+				padding: 2%;
+				border:none;
+				outline: none;
+				cursor: pointer;
+				color: $content_font_color;
+				background-color: $content_All_color;
+				@include breakpoint(max-width 480px){
+					@include span(24);
+					margin-bottom: 3%;
+				};
+				&:nth-child(1){
+					background-color:$content_gray_color; 
+					position: relative;					
+				}
+				&:hover{
+					background-color: $content_black_color;
+				}
+			}
+			&.bt1{
+				overflow: hidden;
+				padding: 5% 3% ;
+				button{
+					@include span(24);
+					padding: 2%;
+					border:none;
+					outline: none;
+					cursor: pointer;
+					color: $content_font_color;
+					background-color: $content_All_color;
+					&:hover{
+						background-color: $content_black_color;
+					}
+				}				
+			}
+		}
+	}	
+
+
+}
+
+.bak{
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0,0,0,0.5);
+	top: 0;
+	left: 0;
+	z-index: 1;
+	&.act{
+		display: block;
+	}
+}
+
+
+// 取消訂單浮層
+.blackblack1,.blackblack2{
+	@extend %center-center;
+	position: fixed;
+	top: 0;
+	left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    display:none;
+    .black{
+    	display: block;
+    	background-color: rgba(0, 0, 0, 0.6);
+   	 	width: 100%;
+   	 	height: 100%;
+    }
+    .contentbox{
+    	position: absolute;
+		display: flex;
+		padding: 3%;
+		width: 80%;
+		height: auto;
+		background-color: $content_font_color;
+    	flex-direction: column;
+    	align-items: center;
+    	justify-content: center;
+    	h1{
+    		display: block;
+    		text-align: center;
+    		margin: 3%;
+    		@include adjust-font-size-to(nth($font-list, 3) );
+    	}
+    	.yes{
+    		display: block;
+    		@include span(24);
+    		margin:1%;
+    	}
+    	button{
+    		@include span(12);
+			padding:1%;
+			border:none;
+			outline: none;
+			cursor: pointer;
+			color: $content_font_color;
+			background-color: $content_All_color;
+			&:hover{
+				background-color: $content_black_color;
+			}	
+    	}
+    }	
+}
+
+
+// 地
+footer{
+	margin-top: rhythm(2);
+	.container{
+		@extend %Basic-setting;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		width: 100%;
+		background-color:$content_gray_color;
+		ul{
+			li{
+				margin-left: rhythm(1);
+				margin-right: rhythm(1);
+				a{
+					display: block;				
+					padding-top: rhythm(0.5);
+					padding-bottom: rhythm(0.5);
+					padding-right: rhythm(1);
+					padding-left: rhythm(1);
+					color: $content_font_color;
+					@include adjust-font-size-to(nth($font-list, 3),2.5 );
+					&:hover{
+						color: $content_gray_color;
+						background-color: $content_font_color;
+					}				
+				}
+
+			}
+		}
+	}
+}
+
+// GOTOP按鈕
+#gotop {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    right: 10px;
+    bottom: 70px;
+    padding: 10px 10px 3px 10px;
+    border-radius: 6px;
+    font: 12px/30px Verdana;
+    text-align: center;
+    color: #020304;
+    background-color: rgba(black, 0.8);
+    color: $content_font_color;
+    cursor: pointer;
+    opacity: 0.5;
+    &:before{
+	    content: "";
+	    position: absolute;
+	    top: 7px;
+	    left: 18px;
+	    width: 0;
+	    height: 0;
+	    border: 4px solid #ccc;
+	    border-color: transparent transparent #ccc;    	
+    }
+}
+
+
+// alert浮層
+.alertbox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display:none;
+    // display: flex;
+    align-items:center;
+    justify-content:center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000,0.8);
+    z-index: 99;
+
+    // X樣式
+    .closeclose{
+        @extend %setting;
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color:$content_All_color;
+        &:before,&:after{
+            position: absolute;
+            content: "";
+            display: block;
+            width: 25px;
+            height: 5px;
+            background-color: $content_font_color;
+        }
+        &:before{
+            @include transform(rotate(-45deg));
+            top: 17px;
+            left: 8px;
+        }
+        &:after{
+            @include transform(rotate(45deg));
+            top: 17px;
+            left: 8px;           
+        }      
+    }
+
+    .alert_terms{
+        @extend %setting;  
+        position: relative;
+        width: 80%;
+        height: 80%;
+
+        background-color:$content_font_color;
+        padding: rhythm(1);
+        .contbox{
+           width: 100%;
+           height: 95%;
+           overflow-y:scroll; 
+           h1{
+                text-align: center;
+                font-weight: bolder;
+                color:$content_black_color;
+                @include adjust-font-size-to(nth($font-list, 4) );            
+           }
+           h2{
+                @include adjust-font-size-to(nth($font-list, 3) );
+                margin-top: 2%;
+                margin-bottom:2%;
+            }          
+           dd{
+            @include adjust-font-size-to(nth($font-list, 2) );
+            color: $content_All_color;
+            text-align: center;
+            font-weight: bolder;           
+           }
+            .contentimg{
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }          
+           .textbox{
+                padding: 2%;
+                margin-top:1%;
+                margin-bottom:3%;
+                width: 98%;
+    			margin: 0 auto;
+                border:1px solid $content_All_color;
+                p{
+                    color: $textColor;
+                    @include adjust-font-size-to(nth($font-list, 2),2 );
+                }
+           }
+           .text{
+                padding-left:2%;
+                h2{
+                    @include adjust-font-size-to(nth($font-list, 3) );
+                    margin-top: 2%;
+                    margin-bottom:2%;
+                }
+                ol{
+                    list-style: decimal;
+                    padding-left:5%;
+                    li{
+                        @include adjust-font-size-to(nth($font-list, 2),2.5 );
+                        p{
+                            @include adjust-font-size-to(nth($font-list, 2),2.5 );
+                        }
+                        a{
+                            display: inline-block;
+                            color:$content_All_color;
+                            word-break: break-all;
+                        }
+                    }
+                }
+                h3{
+                    @include adjust-font-size-to(nth($font-list, 2),2.5 );
+                    margin-bottom: 2%;
+                }
+                h4{
+                    padding-left:5%;
+                    @include adjust-font-size-to(nth($font-list, 2),2.5 );
+                    span{
+                        @include adjust-font-size-to(nth($font-list, 2) );
+                    }
+                }
+           }
+        } 
+		.box{
+		    @extend %setting;
+		    width: 250px;
+		    height: 501px;          
+		    overflow: hidden; 
+		    background-image: image-url("iphone_bg.png");
+		    background-size: 100%;
+		    margin-top: rhythm(1);                  
+		}
+		.step{
+		    @extend %setting;
+		    ul{
+		        width: 1750px;
+		        overflow: hidden;
+		        position: relative;
+		        left:0px;
+		        li{
+		            position: relative;
+		            width: 250px;
+		            height: 501px;
+		            float: left;
+		            img{
+		                position: absolute;
+		                left: 0;
+		                top: 0;
+		                width: 100%;
+		                height: auto;
+		            }
+		            .text{
+		                position: absolute;
+		                z-index: 1;
+		            }
+		            p{
+		                display: inline-block;
+		                padding: rhythm(1);
+		                @include adjust-font-size-to(nth($font-list, 3) );
+		                text-align: center;
+		                color:$white_color; 
+		                background-color: $black_color;
+		            }
+		            .finger{
+		                @extend %setting;
+		                width: 40px;
+		                height: 40px;                       
+		                position: absolute;
+		                z-index: 1;
+		                position: absolute;
+		                right: 0;
+		                bottom: 0;
+		                ;
+		                a{
+		                    @extend %setting;
+		                    width: 40px;
+		                    height: 40px; 
+		                    background-image: image-url("finger.png");
+		                    background-size: 100%;
+		                }
+		                .bg{
+		                    @extend %setting;
+		                    position: absolute;
+		                    top: 0px;
+		                    left: 0px;                          
+		                    background-color:rgba( #FDF25D,0.8);
+		                    z-index: -1;
+		                    border-radius: 50%;
+		                    width: 40px;
+		                    height: 40px;
+		                    @include animation(1s infinite bigsmail);
+		                    @include transform(scale(1));
+		                }
+		            }   
+		            &:nth-child(1){
+		                .text{
+		                    top: 90px;
+		                    left: 55px;
+		                }
+		                .finger{
+		                    bottom: -22px;
+		                }
+		            }
+		            &:nth-child(2){
+		                .text{
+		                    top: 325px;
+		                    left: 55px;
+		                }
+		                .finger{
+		                    bottom: -60px;
+		                    left: 75px;
+		                }
+		            }
+		            &:nth-child(3){
+		                .text{
+		                    top: 70px;
+		                    left: 32px;
+		                }
+		                .finger{
+		                    bottom: -50px;
+		                }
+		            }
+		            &:nth-child(4){
+		                .text{
+		                    top: 175px;
+		                    left: 20px;
+		                }
+		                .finger{
+		                    bottom: -35px;
+		                    left: 70px;
+		                }
+		            }
+		            &:nth-child(5){
+		                .text{
+		                    top: 330px;
+		                    left: 22px;
+		                }
+		                .finger{
+		                    bottom: -65px;
+		                }
+		            }
+		            &:nth-child(6){
+		                .text{
+		                    top: 330px;
+		                    left: 22px;
+		                }
+		                .finger{
+		                    bottom: 45px;
+		                }
+		            }
+		            &:nth-child(7){
+		                .text{
+		                    top: 280px;
+		                    left: 48px;
+		                }
+		                .finger{
+		                    bottom: 45px;
+		                }
+		            }
+		            
+		            span{
+		                @extend %setting;
+		                position: absolute;
+		                padding: rhythm(1);
+		                bottom: 70px;
+		                right: 25px;
+		                background-color:$purple_color;
+		                color: $white_color;
+		                z-index: 1;
+		                cursor: pointer;
+		            }
+
+
+		        }
+		    }
+		}            
+    }
+}
+
+@include keyframes(bigsmail){
+    from {
+        @include transform(scale(0.8));
+    }
+    to {
+        @include transform(scale(1.2));
+    }
+};
