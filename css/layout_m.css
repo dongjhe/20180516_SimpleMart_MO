@@ -26,7 +26,7 @@ header .container, header .container .member_area, main .starblock, main .shelfb
 
 header .container .member_area ul, header .container .member_area ul li:nth-child(3) a, main .productList .Success_added, .blackblack1, .blackblack2 { display: flex; align-items: center; justify-content: center; }
 
-.alertbox .closeclose, .alertbox .alert_terms, .alertbox .alert_terms .box, .alertbox .alert_terms .step, .alertbox .alert_terms .step ul li .finger, .alertbox .alert_terms .step ul li .finger a, .alertbox .alert_terms .step ul li .finger .bg, .alertbox .alert_terms .step ul li span { display: block; padding: 0; margin: 0 auto; }
+.alertbox .closeclose, .alertbox .logis, .alertbox .alert_terms, .alertbox .alert_terms .box, .alertbox .alert_terms .step, .alertbox .alert_terms .step ul li .finger, .alertbox .alert_terms .step ul li .finger a, .alertbox .alert_terms .step ul li .finger .bg, .alertbox .alert_terms .step ul li span { display: block; padding: 0; margin: 0 auto; }
 
 @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; src: local("Lato Regular"), local("Lato-Regular"), url(https://fonts.gstatic.com/s/lato/v13/1YwB1sO8YE1Lyjf12WNiUA.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
@@ -38,7 +38,7 @@ input[type="button"] { appearance: none; -moz-appearance: none; -webkit-appearan
 
 html, body { width: 100%; height: 100%; min-width: 320px; position: relative; }
 
-#Wapper { width: 100%; height: auto; max-width: 736px; margin: 0 auto; }
+#Wapper { width: 100%; height: 100%; max-width: 736px; min-height: 100%; position: relative; margin: 0 auto; padding-bottom: 100px; }
 
 header { position: fixed; top: 0; left: 0; width: 100%; z-index: 3; }
 header .container { max-width: 768px; overflow: inherit; position: relative; }
@@ -70,7 +70,7 @@ header .container .nav_area .member a { color: #FFFFFF; }
 header .container .nav_area ul li a { display: block; text-align: center; color: #808285; font-size: 16px; line-height: 40px; }
 header .container .nav_area ul li a:hover { color: #A7017A; background-color: #FFFFFF; }
 
-main { display: block; width: 100%; padding-top: 10px; margin-top: 70px; position: relative; }
+main { display: block; width: 100%; padding-top: 10px; margin-top: 70px; }
 main .starblock ul { display: flex; flex-wrap: wrap; justify-content: space-between; }
 main .starblock ul li { width: 49%; margin-bottom: 5px; }
 main .starblock ul li .title_bg { display: flex; align-items: center; width: 100%; height: 40px; color: #FFFFFF; background-color: #000; }
@@ -221,12 +221,33 @@ main .return_application .returnbox aside .count .returnitem .issue ul li:hover 
 main .return_application .returnbox aside .count .returnitem .issue ul li.add { color: #000; }
 main .return_application .returnbox aside .count button { width: 15%; height: 44px; border: none; outline: none; padding-left: 1%; padding-right: 1%; color: #FFFFFF; background-color: #A7017A; cursor: pointer; }
 main .return_application .returnbox aside .count button:hover { background-color: #3E3A3A; }
+main .return_application .receipt_information { overflow: hidden; }
+main .return_application .receipt_information p { font-size: 18px; line-height: 30px; font-weight: bold; margin-bottom: 10px; }
+main .return_application .receipt_information p .label { margin: 0; display: inline-block; color: #A7017A; font-weight: bolder; font-size: 16px; line-height: 25px; cursor: pointer; }
+main .return_application .receipt_information p .radio { display: none; }
+main .return_application .receipt_information p .radioInput { background-color: #FFFFFF; border: 2px solid #A7017A; display: inline-block; width: 20px; height: 20px; margin-left: 10px; margin-right: 5px; margin-top: -1px; vertical-align: middle; line-height: 1; }
+main .return_application .receipt_information p .radio:checked + .radioInput:after { background-color: #A7017A; content: ""; display: inline-block; width: 12px; height: 12px; margin: 2px; }
+main .return_application .receipt_information p .checkbox.radioInput, main .return_application .receipt_information p .radio:checked + .checkbox.radioInput:after { border-radius: 0; }
+main .return_application .receipt_information .box { display: block; width: 100%; overflow: hidden; margin-bottom: 10px; }
+main .return_application .receipt_information .box .content { width: 47.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; }
+main .return_application .receipt_information .box .content h2 { font-size: 18px; line-height: 30px; font-weight: bold; display: inline-block; }
+main .return_application .receipt_information .box .content input { display: block; border: none; outline: none; width: 100%; height: 44px; padding-left: 1%; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); }
+main .return_application .receipt_information .box .content input:focus { border: 1px solid #A7017A; box-shadow: none; }
+Return_code main .return_application .receipt_information .box .content:nth-child(2) { margin-left: 1%; }
+main .return_application .receipt_information .box .boxleft h2 { font-size: 18px; line-height: 30px; font-weight: bold; }
+main .return_application .receipt_information .box .boxright input { display: block; border: none; outline: none; width: 100%; height: 44px; padding-left: 1%; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); }
+main .return_application .receipt_information .box .boxright input:focus { border: 1px solid #A7017A; box-shadow: none; }
+main .return_application .receipt_information .box .boxright p { color: #A7017A; font-size: 14px; line-height: 20px; }
+main .return_application .receipt_information .box .boxright select { width: 47.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; height: 44px; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); outline: none; cursor: pointer; margin-bottom: 10px; }
+main .return_application .receipt_information .box .boxright select:focus { border: 1px solid #A7017A; box-shadow: none; }
+main .return_application .receipt_information .box .boxright .branch { display: block; width: 100%; height: 44px; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); outline: none; margin-top: 5px; }
 main .return_application .button { display: block; margin: 0 auto; padding: 2%; margin-top: 3%; text-align: center; overflow: hidden; }
 main .return_application .button button { width: 47.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; height: 44px; border: none; outline: none; padding-left: 1%; padding-right: 1%; margin-top: 1%; margin-bottom: 1%; color: #FFFFFF; background-color: #A7017A; cursor: pointer; }
 @media (max-width: 480px) { main .return_application .button button { width: 97.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; } }
 main .return_application .button button:nth-child(1) { background-color: #808285; }
 main .return_application .button button:hover { background-color: #3E3A3A; }
 main .return_pagebox .Return_code { text-align: center; margin-bottom: 5%; }
+main .return_pagebox .Return_code h3 { text-align: center; color: #A7017A; font-weight: bolder; font-size: 18px; line-height: 30px; }
 main .return_pagebox .Return_code h4 { padding-top: 2%; padding-bottom: 2%; text-align: center; color: #A7017A; font-weight: bolder; font-size: 16px; line-height: 20px; }
 main .return_pagebox .Return_code h5 { color: #A7017A; font-size: 30px; line-height: 40px; font-family: "Lato","Century Gothic"; letter-spacing: 0.1em; }
 main .return_pagebox .Return_code h6 { font-weight: bolder; }
@@ -285,6 +306,7 @@ main .shoppingdetails .shopbox2 .box .boxright p { color: #A7017A; font-size: 12
 main .shoppingdetails .shopbox2 .box .boxright select { width: 48%; height: 44px; margin-right: 1%; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); outline: none; cursor: pointer; }
 main .shoppingdetails .shopbox2 .box .boxright select:focus { border: 1px solid #A7017A; box-shadow: none; }
 main .shoppingdetails .shopbox2 .box .boxright select:nth-child(2) { margin-left: 4px; margin-right: 0; }
+main .shoppingdetails .shopbox2 .box .boxright .branch { display: block; width: 100%; height: 44px; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); outline: none; margin-top: 10px; }
 main .shoppingdetails .shopbox2 .box .boxright1 { width: 81.25%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; }
 main .shoppingdetails .shopbox2 .box .boxright1 .label { margin: 0; display: inline-block; color: #A7017A; font-weight: bolder; font-size: 14px; line-height: 25px; cursor: pointer; }
 main .shoppingdetails .shopbox2 .box .boxright1 .radio { display: none; }
@@ -332,6 +354,12 @@ main .shoppingdetails .Complete_order .orderlist .shopbox3 h2 dd { color: #80828
 main .shoppingdetails .Complete_order .orderlist .shopbox3 div { clear: both; margin: 0 auto; padding: 2% 0; text-align: center; }
 main .shoppingdetails .Complete_order .orderlist .shopbox3 div > button { width: 60%; padding: 2%; border: none; outline: none; cursor: pointer; color: #FFFFFF; background-color: #A7017A; }
 main .shoppingdetails .Complete_order .orderlist .shopbox3 div > button:hover { background-color: #3E3A3A; }
+main .shoppingdetails .payment_number { margin-top: 30px; }
+main .shoppingdetails .payment_number h2 { font-size: 30px; line-height: 30px; }
+main .shoppingdetails .payment_number h2 span { font-size: 30px; line-height: 30px; color: #A7017A; }
+main .shoppingdetails .payment_number p { font-size: 16px; line-height: 30px; }
+main .shoppingdetails .payment_number h3 { font-size: 16px; line-height: 30px; margin-top: 10px; }
+main .shoppingdetails .payment_number h3 span { color: red; }
 main .shoppingdetails .shopinfo { margin-top: 5%; }
 main .shoppingdetails .shopinfo > ul { overflow: hidden; }
 main .shoppingdetails .shopinfo > ul > li { display: flex; align-items: center; border-top: 1px solid #3E3A3A; padding: 2% 0; }
@@ -354,6 +382,11 @@ main .shoppingdetails .shopinfo > ul > li .proinfo ul li .tdbox6 input[type="but
 main .shoppingdetails .shopinfo > ul > li .proinfo ul li .tdbox6 input[type="number"] { width: 50%; -webkit-appearance: none; -moz-appearance: none; appearance: none; border: 1px solid #E5E5E5; }
 main .shoppingdetails .shopinfo > ul > li .proinfo ul li .tdbox6 input[type="number"]::-webkit-inner-spin-button, main .shoppingdetails .shopinfo > ul > li .proinfo ul li .tdbox6 input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 main .shoppingdetails .shopinfo > ul > li:last-child { border-bottom: 1px solid #3E3A3A; }
+main .shoppingdetails .shopbox3 { overflow: hidden; margin-top: 20px; }
+main .shoppingdetails .shopbox3 .cont { width: 47.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; text-align: center; }
+main .shoppingdetails .shopbox3 .cont a { display: block; width: 70%; margin: 0 auto; }
+main .shoppingdetails .shopbox3 .cont a img { width: 100%; height: auto; }
+main .shoppingdetails .shopbox3 .cont span { font-size: 20px; line-height: 40px; color: #A7017A; }
 main .myorder .myorderlist { margin-bottom: 5%; }
 main .myorder .myorderlist .listitle { position: relative; display: block; }
 main .myorder .myorderlist .listitle a { position: absolute; top: 0; left: 0; display: inline-block; width: 30px; height: 30px; border: 1px solid #3E3A3A; }
@@ -434,7 +467,8 @@ main .myorder .myorderlist .total_list_cont .contbox .order_progress .status_but
 main .myorder .myorderlist .recipient_information .shopbox3 h2 { width: 97.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; font-size: 14px; line-height: 30px; overflow: hidden; }
 main .myorder .myorderlist .recipient_information .shopbox3 h2 p { display: inline-block; font-weight: bolder; width: 35%; font-size: 14px; line-height: 25px; }
 main .myorder .myorderlist .recipient_information .shopbox3 h2 span { color: #808285; margin-left: 2%; font-size: 14px; line-height: 25px; }
-main .myorder .myorderlist .recipient_information .shopbox3 h2 dd { color: #808285; margin-left: 37%; font-size: 14px; line-height: 25px; }
+main .myorder .myorderlist .recipient_information .shopbox3 h2 span a { padding: 5px; color: #FFFFFF; background-color: #A7017A; font-size: 14px; line-height: 25px; }
+main .myorder .myorderlist .recipient_information .shopbox3 h2 dd { margin-left: 37%; font-size: 14px; line-height: 25px; }
 main .myorder .myorderlist .recipient_information .shopbox3 div { clear: both; margin: 0 auto; padding: 2% 0; text-align: center; }
 main .myorder .myorderlist .recipient_information .shopbox3 div > button { width: 60%; padding: 2%; border: none; outline: none; cursor: pointer; color: #FFFFFF; background-color: #A7017A; }
 main .myorder .myorderlist .recipient_information .shopbox3 div > button:hover { background-color: #3E3A3A; }
@@ -489,7 +523,7 @@ main .setpassowrd .shoppingbot.bt1 button:hover { background-color: #3E3A3A; }
 .blackblack1 .contentbox button, .blackblack2 .contentbox button { width: 47.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; padding: 1%; border: none; outline: none; cursor: pointer; color: #FFFFFF; background-color: #A7017A; }
 .blackblack1 .contentbox button:hover, .blackblack2 .contentbox button:hover { background-color: #3E3A3A; }
 
-footer { margin-top: 20px; }
+footer { margin-top: 20px; width: 100%; }
 footer .container { padding-top: 5px; padding-bottom: 5px; width: 100%; background-color: #808285; }
 footer .container ul li { margin-left: 10px; margin-right: 10px; }
 footer .container ul li a { display: block; padding-top: 5px; padding-bottom: 5px; padding-right: 10px; padding-left: 10px; color: #FFFFFF; font-size: 16px; line-height: 25px; }
@@ -503,6 +537,11 @@ footer .container ul li a:hover { color: #808285; background-color: #FFFFFF; }
 .alertbox .closeclose:before, .alertbox .closeclose:after { position: absolute; content: ""; display: block; width: 25px; height: 5px; background-color: #FFFFFF; }
 .alertbox .closeclose:before { -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); top: 17px; left: 8px; }
 .alertbox .closeclose:after { -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); top: 17px; left: 8px; }
+.alertbox .logis { position: relative; width: 80%; height: initial; background-color: #FFFFFF; padding: 10px; }
+.alertbox .logis .contentbox { width: 100%; height: 100%; }
+.alertbox .logis .contentbox h1 { text-align: center; font-weight: bolder; color: #3E3A3A; font-size: 18px; line-height: 50px; }
+.alertbox .logis .contentbox button, .alertbox .logis .contentbox a { text-align: center; width: 47.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; padding: 10px; border: none; outline: none; cursor: pointer; color: #FFFFFF; background-color: #A7017A; }
+.alertbox .logis .contentbox button:hover, .alertbox .logis .contentbox a:hover { background-color: #3E3A3A; }
 .alertbox .alert_terms { position: relative; width: 80%; height: 80%; background-color: #FFFFFF; padding: 10px; }
 .alertbox .alert_terms .contbox { width: 100%; height: 95%; overflow-y: scroll; }
 .alertbox .alert_terms .contbox h1 { text-align: center; font-weight: bolder; color: #3E3A3A; font-size: 18px; line-height: 30px; }

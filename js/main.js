@@ -180,6 +180,93 @@ $(function(){
 	});
 
 
+    // 查詢物流進度按扭區塊
+    $(".recipient_information #Goto").click(function(even){
+    	var textArea = document.createElement("textarea");
+    	var waybillnumber =$(this).parents(".recipient_information").siblings(".total_list_cont").find(".waybillnumber")
+        textArea.value = waybillnumber.text();
+        textArea.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+        document.execCommand("Copy")
+
+        $(this).parents(".shopbox3").siblings(".alertbox").css('display', 'flex');
+		return false
+    })
+
+	$(".recipient_information .closeclose").click(function(event) {
+		$(".recipient_information .alertbox").css('display', 'none');
+	});
+
+	$(".recipient_information .contentbox .nono").click(function(event){
+		$(".recipient_information .alertbox").css('display', 'none');
+	})
+
+	$(".recipient_information .contentbox .gogo").click(function(event){
+	   
+	   $(".recipient_information .alertbox").css('display', 'none');
+
+	   var logistics = $(this).parents(".recipient_information").find(".logistics").text()
+
+       switch (logistics) {
+            case "順風速運":
+                window.open('http://www.sf-express.com/tw/tc/dynamic_functions/waybill/')
+                break;
+            case "宅配通":
+                window.open('https://www.e-can.com.tw/search_Goods.aspx')
+                break;
+            case "黑貓宅急便":
+                window.open('https://www.t-cat.com.tw/inquire/trace.aspx')
+                break;
+            case "新竹物流":
+                window.open('https://www.hct.com.tw/Default.aspx')
+                break;
+            case "嘉里大榮":
+                window.open('http://www.kerrytj.com/zh/')
+                break;
+            case "中華郵政":
+                window.open('http://postserv.post.gov.tw/pstmail/main_mail.html')
+                break;
+            case "便利帶":
+                window.open('http://www.4128777.tw/Search.php')
+                break;
+            case "全速配":
+                window.open('http://www.fsdex.com.tw/Default.aspx')
+                break;
+            case "錸乾物流":
+                window.open('http://ec.qtrans.com.tw/')
+                break;
+            case "超峰快遞":
+                window.open('http://www.express.com.tw/tools/positchecking.aspx')
+                break;
+            case "晉越快遞":
+                window.open('http://www.byondex.com/')
+                break;
+            case "好運袋":
+                window.open('http://www.luckyexpress.com.tw/')
+                break;
+            case "DHL":
+                window.open('http://www.dhl.com.tw/zt/express/tracking/tracking_tools.html')
+                break;
+            case "UPS":
+                window.open('https://www.ups.com/WebTracking/track?loc=zh_TW')
+                break;
+            default:
+            	alert("查無此物流公司")
+            	break;
+        }		
+	})	
+
+
+
+
+
+
+
+
+
 
 
 })

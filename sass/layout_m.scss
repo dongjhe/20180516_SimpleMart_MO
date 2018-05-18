@@ -36,9 +36,12 @@ html,body{
 
 #Wapper{
 	width: 100%;
-	height: auto;
+	height: 100%;
 	max-width: 736px;
+    min-height: 100%;
+    position: relative;
 	margin: 0 auto;
+	padding-bottom: 100px;
 }
 
 // 天
@@ -226,7 +229,6 @@ main{
 	width: 100%;
 	padding-top: rhythm(1);
 	margin-top: rhythm(7);
-	position: relative;
 	// 主打星商品樣式
 	.starblock{
 		@extend %Basic-setting;
@@ -1028,6 +1030,127 @@ main{
 				}
 			}
 		}
+		.receipt_information{
+			overflow: hidden;
+			p{
+				@include adjust-font-size-to(nth($font-list, 4),3 );
+				font-weight: bold;
+				margin-bottom: 10px;
+				.label {
+				    margin:0;
+				    display: inline-block;
+				    color:$content_All_color; 
+					font-weight: bolder;
+					@include adjust-font-size-to(nth($font-list, 3),2.5 );
+					cursor: pointer;
+				}
+				.radio {
+				    display: none
+				}
+				.radioInput {
+				    background-color: $content_font_color;
+				    border: 2px solid $content_All_color;
+				    display: inline-block;
+				    width: 20px;
+				    height: 20px;
+				    margin-left: 10px;
+				    margin-right: 5px;
+				    margin-top: -1px;
+				    vertical-align: middle;
+				    line-height: 1;
+				}
+				.radio:checked+.radioInput:after {
+				    background-color:$content_All_color;
+				    content: "";
+				    display: inline-block;
+				    width: 12px;
+				    height: 12px;
+				    margin: 2px;   
+				}
+				.checkbox.radioInput,.radio:checked+.checkbox.radioInput:after {
+				    border-radius: 0
+				}				
+			}
+			.box{
+				display: block;
+				width: 100%;
+				overflow: hidden;
+				margin-bottom: 10px;
+				.content{
+					// width: 49%;
+					// float: left;
+					@include span(12);
+					h2{
+						@include adjust-font-size-to(nth($font-list, 4),3 );
+						font-weight: bold;
+						display: inline-block;
+					}
+					input{
+						display: block;
+						border:none;
+						outline: none;
+						width: 100%;
+						height: 44px;
+						padding-left: 1%;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}
+					}Return_code
+					&:nth-child(2){
+						margin-left: 1%;
+					}
+				}
+				.boxleft{
+					h2{
+						@include adjust-font-size-to(nth($font-list, 4),3 );
+						font-weight: bold;
+					}
+				}
+				.boxright{
+					input{
+						display: block;
+						border:none;
+						outline: none;
+						width: 100%;
+						height: 44px;
+						padding-left: 1%;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}
+					}
+					p{
+						color: $content_All_color;
+						@include adjust-font-size-to(nth($font-list, 2) );
+					}
+					select{
+						// width: 49%;
+						@include span(12);
+						height: 44px;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						outline: none;
+						cursor: pointer;
+						margin-bottom: rhythm(1);
+						&:focus{
+							border:1px solid $content_All_color;
+							box-shadow: none;
+						}					
+					}
+					.branch{
+						display: block;
+						width: 100%;
+						height: 44px;
+						// margin-right: 4px;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						outline: none;
+						margin-top: 5px;
+					}
+				}
+			}
+		}		
 		.button{
 			display: block;
 			margin: 0 auto;
@@ -1065,6 +1188,12 @@ main{
 		.Return_code{
 			text-align: center;
 			margin-bottom:5%;
+			h3{
+				text-align: center;
+				color: $content_All_color;
+				font-weight: bolder;
+				@include adjust-font-size-to(nth($font-list, 4) );				
+			}			
 			h4{
 				padding-top:2%;
 				padding-bottom:2%;
@@ -1381,6 +1510,15 @@ main{
 							margin-right: 0;
 						}						
 					}
+					.branch{
+						display: block;
+						width: 100%;
+						height: 44px;
+						// margin-right: 4px;
+						box-shadow: inset 1px 1px 2px rgba($content_black,0.3);
+						outline: none;
+						margin-top: rhythm(1);
+					}					
 				}
 				.boxright1{
 					@include span(20);
@@ -1634,6 +1772,26 @@ main{
 				}
 			}
 		}
+		.payment_number{
+			margin-top: rhythm(3);
+			h2{
+				@include adjust-font-size-to(nth($font-list, 6),3 );
+				span{
+					@include adjust-font-size-to(nth($font-list, 6),3 );
+					color: $purple_color;
+				}
+			}
+			p{
+				@include adjust-font-size-to(nth($font-list, 3),3 );
+			}
+			h3{
+				@include adjust-font-size-to(nth($font-list, 3),3 );
+				margin-top: rhythm(1);
+				span{
+					color: red;
+				}
+			}
+		}
 		.shopinfo{
 			margin-top: 5%;
 			&>ul{
@@ -1731,6 +1889,27 @@ main{
 					&:last-child{
     					border-bottom: 1px solid $content_black_color;
 					}
+				}
+			}
+		}
+		.shopbox3{
+			overflow: hidden;
+			margin-top:rhythm(2);
+			.cont{
+				@include span(12);
+				text-align: center;
+				a{
+					display: block;
+					width: 70%;
+					margin: 0 auto;
+					img{
+						width: 100%;
+						height: auto;
+					}
+				}
+				span{
+					@include adjust-font-size-to(nth($font-list, 5),4 );
+					color: $purple_color;
 				}
 			}
 		}
@@ -2188,9 +2367,14 @@ main{
 							color: $content_gray_color;
 							margin-left:2%;
 							@include adjust-font-size-to(nth($font-list, 2),2.5 );
+							a{
+								padding:rhythm(0.5);
+								color:$white_color;
+								background-color:$purple_color; 
+								@include adjust-font-size-to(nth($font-list, 2),2.5 );
+							}
 						}
 						dd{
-							color: $content_gray_color;
 							margin-left: 37%;
 							@include adjust-font-size-to(nth($font-list, 2),2.5 );
 
@@ -2493,6 +2677,7 @@ main{
 // 地
 footer{
 	margin-top: rhythm(2);
+	width: 100%;
 	.container{
 		@extend %Basic-setting;
 		padding-top: 5px;
@@ -2594,7 +2779,37 @@ footer{
             left: 8px;           
         }      
     }
-
+	.logis{
+        @extend %setting;  
+        position: relative;
+        width: 80%;
+        height: initial;
+        background-color:$content_font_color;
+        padding: rhythm(1);
+        .contentbox{
+        	width: 100%;
+        	height: 100%;
+            h1{
+                text-align: center;
+                font-weight: bolder;
+                color:$content_black_color;
+                @include adjust-font-size-to(nth($font-list, 4),5 );            
+           }       	
+	    	button,a{
+	    		text-align: center;
+	    		@include span(12);
+				padding: rhythm(1);
+				border:none;
+				outline: none;
+				cursor: pointer;
+				color: $content_font_color;
+				background-color: $content_All_color;
+				&:hover{
+					background-color: $content_black_color;
+				}	
+	    	}        	
+        }
+	}
     .alert_terms{
         @extend %setting;  
         position: relative;
@@ -2832,6 +3047,10 @@ footer{
 		}            
     }
 }
+
+// 取消訂單浮層
+
+
 
 @include keyframes(bigsmail){
     from {
