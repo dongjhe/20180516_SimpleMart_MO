@@ -75,27 +75,30 @@ header{
 						a{
 							display: inline-block;
 							margin: 0 auto;
-							span{
-								display:block;
-							    width: 30px;
-							    height: 3px;
-								background-color: $content_All_color;
-								margin: 5px 0;
-							}
-							&:before{
-								content: '';
-								display: block;
-							    width: 30px;
-							    height: 3px;
-								background-color: $content_All_color;
-							}
-							&:after{
-								content: '';
-								display: block;
-							    width: 30px;
-							    height: 3px;
-								background-color: $content_All_color;
-							}														
+							color: $purple_color;
+							letter-spacing: -1px;
+							font-size: 14px;
+							// span{
+							// 	display:block;
+							//     width: 30px;
+							//     height: 3px;
+							// 	background-color: $content_All_color;
+							// 	margin: 5px 0;
+							// }
+							// &:before{
+							// 	content: '';
+							// 	display: block;
+							//     width: 30px;
+							//     height: 3px;
+							// 	background-color: $content_All_color;
+							// }
+							// &:after{
+							// 	content: '';
+							// 	display: block;
+							//     width: 30px;
+							//     height: 3px;
+							// 	background-color: $content_All_color;
+							// }														
 						}
 
 					}
