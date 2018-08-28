@@ -60,13 +60,13 @@ header{
 		position: relative;
 		.member_area{
 			@extend %Basic-setting;
-			height: 70px;
+			height: 95px;
 			background-color: $content_font_color;
 			border-bottom: 5px solid $content_All_color;
 			overflow: hidden;
 			ul{
 				@extend %center-center;
-				height: 70px;
+				height: 50px;
 				overflow: hidden;
 				li{
 					@include span(6);
@@ -112,6 +112,9 @@ header{
 							background-size: auto;
 							background-position: center center;
 							background-repeat:no-repeat;
+							@include breakpoint(max-width 768px){
+								background-size: 50%;
+							}
 						}
 					}
 					&:nth-child(3){
@@ -125,17 +128,33 @@ header{
 							img{
 								display: inline-block;
 								margin-right: rhythm(0.5);
+								width: 40%;
 
 							}
 						}
 					}
 				}
 			}
+			.serch{
+				@extend %center-center;
+				padding:0 2% 2% 2%;
+				input{
+					@include span(18);
+					border: 1px solid $content_gray_color;
+					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+				}
+				button{
+					@include span(6);
+					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					color: $white_color;
+					background-color: $returnColor;
+				}
+			}
 		}
 		.nav_area{
 			display: none;
 			position: absolute;
-			top: 70px;
+			top: 95px;
 			left:0;
 			z-index: 2;
 			width: 200px;
