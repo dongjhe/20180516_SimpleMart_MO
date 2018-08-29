@@ -138,16 +138,31 @@ header{
 			.serch{
 				@extend %center-center;
 				padding:0 2% 2% 2%;
+				position: relative;
+				&::before{
+					position: absolute;
+					top: 2px;
+					left: 4%;
+					content: "";
+					width: 25px;
+					height: 25px;
+					background-size:cover;
+					background-image: image-url("icon_search.png");
+				}
 				input{
 					@include span(18);
 					border: 1px solid $content_gray_color;
 					@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					padding-left: 30px;
 				}
 				button{
 					@include span(6);
 					@include adjust-font-size-to(nth($font-list, 2),2.5 );
 					color: $white_color;
 					background-color: $returnColor;
+					border: 0;
+					outline: none;
+					cursor: pointer;
 				}
 			}
 		}
