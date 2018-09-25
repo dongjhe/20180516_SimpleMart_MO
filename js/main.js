@@ -259,7 +259,26 @@ $(function(){
         }		
 	})	
 
+    // 退貨流程按鈕切換
+    $('.return_process_bt a').on('click',function(){
+        
+        $(this).toggleClass('active').siblings('a').removeClass('active');
 
+        let index_of = $(this).index();
+
+        if (index_of === 0) {
+           
+           $('.area1').css('display', 'block');
+           $('.area2').css('display', 'none');
+
+        }else{
+
+           $('.area1').css('display', 'none');
+           $('.area2').css('display', 'block');
+
+        }
+
+    })
 
 
 

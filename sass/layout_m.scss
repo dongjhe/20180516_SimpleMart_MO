@@ -1999,10 +1999,17 @@ main{
 					display:block;
 					font-weight: bolder;
 					@include adjust-font-size-to(nth($font-list, 2),2.5 );
-					padding-left: 45px;
+					margin-left: 45px;
 					span{
 						color:$content_All_color;
 						@include adjust-font-size-to(nth($font-list, 2),2.5 );
+					}
+					&:nth-child(2){
+						display: inline-block;
+						color: $white_color;
+						background-color: $purple_color;
+						padding: 2px 8px;
+						border-radius: 5px;
 					}
 				}
 			}
@@ -2507,6 +2514,9 @@ main{
 				width: 100%;
 				height: auto;
 			}
+			&.area2{
+				display: none;
+			}
 		}
 		.textbox{
 			h3{
@@ -2526,6 +2536,25 @@ main{
 			}
 		}
 	}
+
+	.return_process .return_process_bt{
+		display: block;
+		padding: 0;
+		margin: 15px auto;
+		width: 100%;
+		text-align: center;
+		a{
+			padding: 5px 10px;
+			margin: 0 10px;
+			border-radius: 5px;
+			color: $content_font_color;
+			background-color: $content_gray_color;
+			&.active{
+				background-color:$purple_color;
+			}
+		}
+	}
+
 
 	// 設定密碼
 	.setpassowrd{
