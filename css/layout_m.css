@@ -399,8 +399,9 @@ main .myorder .myorderlist .listitle a.act:before { border-width: 0px 10px 14px 
 main .myorder .myorderlist .listitle a:hover { border: 1px solid #A7017A; }
 main .myorder .myorderlist .listitle a:hover:before { border-color: #A7017A transparent transparent transparent; }
 main .myorder .myorderlist .listitle a:hover.act:before { border-color: transparent transparent #A7017A transparent; }
-main .myorder .myorderlist .listitle h2 { display: block; font-weight: bolder; font-size: 14px; line-height: 25px; padding-left: 45px; }
+main .myorder .myorderlist .listitle h2 { display: block; font-weight: bolder; font-size: 14px; line-height: 25px; margin-left: 45px; }
 main .myorder .myorderlist .listitle h2 span { color: #A7017A; font-size: 14px; line-height: 25px; }
+main .myorder .myorderlist .listitle h2:nth-child(2) { display: inline-block; color: #FFFFFF; background-color: #A7017A; padding: 2px 8px; border-radius: 5px; }
 main .myorder .myorderlist .total_list_cont { padding: 0 3%; }
 main .myorder .myorderlist .total_list_cont .contbox { overflow: hidden; margin-bottom: 5%; }
 main .myorder .myorderlist .total_list_cont .contbox .inventory ul { overflow: hidden; }
@@ -490,9 +491,13 @@ main .service .text h4 span, main .privacy .text h4 span { font-size: 14px; line
 main .buyhelp h2, main .return_process h2 { margin-top: 1%; margin-bottom: 1%; font-size: 14px; line-height: 20px; color: #A7017A; text-align: center; font-weight: bolder; }
 main .buyhelp .contentimg, main .return_process .contentimg { margin-top: 4%; }
 main .buyhelp .contentimg img, main .return_process .contentimg img { width: 100%; height: auto; }
+main .buyhelp .contentimg.area2, main .return_process .contentimg.area2 { display: none; }
 main .buyhelp .textbox h3, main .return_process .textbox h3 { display: block; color: #FFFFFF; background-color: #9A9595; text-align: center; font-size: 18px; line-height: 35px; margin-bottom: 15px; }
 main .buyhelp .textbox ol, main .return_process .textbox ol { list-style: decimal; padding-left: 20px; }
 main .buyhelp .textbox ol li, main .return_process .textbox ol li { font-size: 16px; line-height: 30px; }
+main .return_process .return_process_bt { display: block; padding: 0; margin: 15px auto; width: 100%; text-align: center; }
+main .return_process .return_process_bt a { padding: 5px 10px; margin: 0 10px; border-radius: 5px; color: #FFFFFF; background-color: #808285; }
+main .return_process .return_process_bt a.active { background-color: #A7017A; }
 main .setpassowrd .shopbox2 .box { overflow: hidden; margin-bottom: 3%; }
 main .setpassowrd .shopbox2 .box .boxleft { width: 97.91667%; float: left; margin-left: 1.04167%; margin-right: 1.04167%; }
 main .setpassowrd .shopbox2 .box .boxleft h2 { width: 100%; font-weight: bolder; font-size: 14px; line-height: 25px; text-align: left; }
