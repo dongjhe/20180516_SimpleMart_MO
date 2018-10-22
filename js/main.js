@@ -260,7 +260,7 @@ $(function(){
 	})	
 
     // 退貨流程按鈕切換
-    $('.return_process_bt a').on('click',function(){
+    $('.return_process_bt a,.buyhelp_bt a').on('click',function(){
         
         $(this).addClass('active').siblings('a').removeClass('active');
 

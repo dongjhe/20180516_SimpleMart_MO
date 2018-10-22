@@ -2537,7 +2537,7 @@ main{
 		}
 	}
 
-	.return_process .return_process_bt{
+	.return_process >.return_process_bt,.buyhelp >.buyhelp_bt{
 		display: block;
 		padding: 0;
 		margin: 15px auto;
