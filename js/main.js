@@ -281,10 +281,15 @@ $(function(){
     })
 
 
+    // 搜尋結果區塊
+    $('.menulist > a').on('click',function(){
+        $('.menulist').toggleClass('active');
+    })
 
-
-
-
+    $('.menulist li').on('click',function(){
+        $('.menulist > a').html($(this).text() +'<b></b>')
+        $('.menulist').toggleClass('active');
+    })
 
 
 
